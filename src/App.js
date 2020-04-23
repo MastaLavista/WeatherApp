@@ -20,7 +20,7 @@ class WeatherDisplay extends Component {
     const name = this.props.name;
     const URL = "http://api.openweathermap.org/data/2.5/weather?q=" + 
     name + 
-    "&appid=1ce8ad64298823fad398d6e779e270c0";
+    "&appid=1ce8ad64298823fad398d6e779e270c";
     fetch(URL).then(res => res.json()).then (json => {
       this.setState({weatherData: json});
     });
