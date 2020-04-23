@@ -37,7 +37,7 @@ class WeatherDisplay extends Component {
     }
 }
 
-//does it work?
+//not at all
 class App extends Component {
   constructor () {
     super();
