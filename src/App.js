@@ -25,6 +25,7 @@ class WeatherDisplay extends Component {
       this.setState({weatherData: json});
     });
   }
+  //what
   render() {
     const {weatherData} = this.state;
     if (!weatherData) return <div>Loading</div>;
