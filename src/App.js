@@ -8,17 +8,14 @@ const PLACES = [
   { name: "Honolulu", zip: "96803" },
 ];
 
-class WeatherDisplay extends Component {
-  constructor() {
-    super();
-    this.state = {
+ class WeatherDisplay extends Component {
+  state = {
       weatherData: null,
     };
-  }
 
   componentDidMount() {
-    const { zip, name } = this.props;
-    const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=6d532ee533971e2453b7a114726bcc99`;
+    const name = this.props.name;
+    const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${name}&appid=6d532ee533971e2453b7a114726bcc99`;
     fetch(URL)
       .then((res) => {
         console.log(res);
@@ -32,13 +29,22 @@ class WeatherDisplay extends Component {
     const { weatherData } = this.state;
     if (!weatherData) return <div>Loading</div>;
     const weather = weatherData.weather;
-    console.log("weather", weather);
     const iconUrl = "https://openweathermap.org/img/w/" + weather.icon + ".png";
-    return <h1>Посмотрим на погоду for в городе {this.props.name}</h1>;
+    return (
+    <div>
+      <h1>
+        {weather.main} in {weatherData.name}
+        <img src={iconUrl} alt={weatherData.description} />
+      </h1>
+    <p>Current: {(weatherData.main.temp - 273.15).toFixed(2)}°С</p>
+    <p>High: {(weatherData.main.temp_max - 273.15).toFixed(2)}°С</p>
+    <p>Low: {(weatherData.main.temp_min - 273.15).toFixed(2)}°С</p>
+    <p>Wing Speed: {weatherData.wind.speed} mi/h</p>
+</div>
+    );
   }
 }
 
-//not at all
 class App extends Component {
   constructor() {
     super();
