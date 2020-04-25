@@ -14,8 +14,8 @@ const PLACES = [
     };
 
   componentDidMount() {
-    const name = this.props.name;
-    const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${name}&appid=6d532ee533971e2453b7a114726bcc99`;
+    const {zip, name} = this.props;
+    const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=6d532ee533971e2453b7a114726bcc99`;
     fetch(URL)
       .then((res) => {
         console.log(res);
@@ -34,7 +34,7 @@ const PLACES = [
     <div>
       <h1>
         {weather.main} in {weatherData.name}
-        <img src={iconUrl} alt={weatherData.description} />
+       
       </h1>
     <p>Current: {(weatherData.main.temp - 273.15).toFixed(2)}°С</p>
     <p>High: {(weatherData.main.temp_max - 273.15).toFixed(2)}°С</p>
